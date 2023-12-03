@@ -22,7 +22,7 @@ namespace NicePlayTestTask.Services.Logging
             Debug.LogError(GetString(message, sender ?? this));
 
         private static string GetString(string message, object sender) =>
-            $"<b><color={GetHexColor(sender.GetType())}>{sender.GetType().Name}: </color></b> {message}";
+            $"<b><color={GetHexColor(sender.GetType())}>{sender.GetType().Name}:</color></b> {message}";
 
         private static string GetHexColor(Type sender) =>
             sender.Namespace switch

@@ -3,9 +3,9 @@ using Zenject;
 using NicePlayTestTask.Infrastructure.AssetManagement;
 using NicePlayTestTask.Infrastructure.Factorises;
 using NicePlayTestTask.Infrastructure.SceneManagement;
-using NicePlayTestTask.Services;
 using NicePlayTestTask.Services.LevelProgress;
 using NicePlayTestTask.Services.Logging;
+using NicePlayTestTask.Services.StaticData;
 
 namespace NicePlayTestTask.Infrastructure.Installers
 {
@@ -27,7 +27,7 @@ namespace NicePlayTestTask.Infrastructure.Installers
             Container.BindInterfacesAndSelfTo<LoggingService>().AsSingle().NonLazy();
             // Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
             //
-            // Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LocalStaticDataService>().AsSingle().NonLazy(); // possible remote, initializable
             // Container.BindInterfacesAndSelfTo<PersistentDataService>().AsSingle().NonLazy();
             // Container.BindInterfacesAndSelfTo<SaveLoadLocalService>().AsSingle().NonLazy();
 

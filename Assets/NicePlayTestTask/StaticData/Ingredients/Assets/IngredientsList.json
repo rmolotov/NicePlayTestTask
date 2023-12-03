@@ -1,0 +1,22 @@
+[
+  {
+    "Key": "Meat",
+    "Cost" : 50
+  },
+  {
+    "Key": "Onion",
+    "Cost" : 40
+  },
+  {
+    "Key": "Pepper",
+    "Cost" : 30
+  },
+  {
+    "Key": "Carrot",
+    "Cost" : 20
+  },
+  {
+    "Key": "Potato",
+    "Cost" : 10
+  }
+]
