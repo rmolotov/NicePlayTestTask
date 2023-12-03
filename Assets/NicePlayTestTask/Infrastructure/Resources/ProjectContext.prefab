@@ -54,6 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4546268825615399096}
+  - component: {fileID: 8510529372787026943}
   m_Layer: 0
   m_Name: GameStateMachine
   m_TagString: Untagged
@@ -76,6 +77,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8371173291256830186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8510529372787026943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895266512342095214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c888853c83d4572a0afae3f83ec45bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8207740125686295234
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +138,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 3212527434161310015}
+  - {fileID: 8510529372787026943}
   _installerPrefabs: []
   _parentNewObjectsUnderContext: 1
   _editorReflectionBakingCoverageMode: 0

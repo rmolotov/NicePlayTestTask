@@ -1,7 +1,10 @@
 using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Infrastructure.AssetManagement;
+using NicePlayTestTask.Infrastructure.Factorises;
 using NicePlayTestTask.Infrastructure.SceneManagement;
+using NicePlayTestTask.Services;
+using NicePlayTestTask.Services.Logging;
 
 namespace NicePlayTestTask.Infrastructure.Installers
 {
@@ -20,7 +23,7 @@ namespace NicePlayTestTask.Infrastructure.Installers
 
         private void BindServices()
         {
-            // Container.BindInterfacesAndSelfTo<LoggingService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LoggingService>().AsSingle().NonLazy();
             // Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
             //
             // Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle().NonLazy();
@@ -41,7 +44,7 @@ namespace NicePlayTestTask.Infrastructure.Installers
 
         private void BindFactories()
         {
-            // Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
             // Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             //
             // Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
