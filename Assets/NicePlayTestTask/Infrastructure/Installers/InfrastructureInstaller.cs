@@ -4,6 +4,7 @@ using NicePlayTestTask.Infrastructure.AssetManagement;
 using NicePlayTestTask.Infrastructure.Factorises;
 using NicePlayTestTask.Infrastructure.SceneManagement;
 using NicePlayTestTask.Services;
+using NicePlayTestTask.Services.LevelProgress;
 using NicePlayTestTask.Services.Logging;
 
 namespace NicePlayTestTask.Infrastructure.Installers
@@ -30,10 +31,10 @@ namespace NicePlayTestTask.Infrastructure.Installers
             // Container.BindInterfacesAndSelfTo<PersistentDataService>().AsSingle().NonLazy();
             // Container.BindInterfacesAndSelfTo<SaveLoadLocalService>().AsSingle().NonLazy();
 
-            // Container.BindInterfacesAndSelfTo<LevelProgressServiceResolver>()
-            //     .AsSingle()
-            //     .CopyIntoDirectSubContainers();
-            // Container.BindInterfacesAndSelfTo<LevelProgressService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LevelProgressServiceResolver>()
+                .AsSingle()
+                .CopyIntoDirectSubContainers();
+            Container.BindInterfacesAndSelfTo<LevelProgressService>().AsSingle().NonLazy();
 
             // Container.BindInterfacesAndSelfTo<CurtainService>()
             //     .FromComponentInNewPrefab(curtainServicePrefab)

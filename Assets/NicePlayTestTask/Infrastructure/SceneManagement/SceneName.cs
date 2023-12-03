@@ -4,6 +4,6 @@ namespace NicePlayTestTask.Infrastructure.SceneManagement
     {
         Bootstrap = 0,
         Meta      = 1,
-        Game      = 2
+        Core      = 2
     }
 }

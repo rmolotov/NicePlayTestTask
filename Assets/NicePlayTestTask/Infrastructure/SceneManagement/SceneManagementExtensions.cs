@@ -9,7 +9,7 @@ namespace NicePlayTestTask.Infrastructure.SceneManagement
             {
                 "Bootstrap" => SceneName.Bootstrap,
                 "Meta"      => SceneName.Meta,
-                "Core"      => SceneName.Game,
+                "Core"      => SceneName.Core,
                 _           => throw new ArgumentOutOfRangeException(nameof(sceneName), sceneName, null)
             };
 
@@ -18,12 +18,12 @@ namespace NicePlayTestTask.Infrastructure.SceneManagement
             {
                 SceneName.Bootstrap => "Bootstrap",
                 SceneName.Meta      => "Meta",
-                SceneName.Game      => "Game",
+                SceneName.Core      => "Core",
                 _                   => throw new ArgumentOutOfRangeException(nameof(sceneName), sceneName, null)
             };
 
         public static bool IsGamePlayScene(this SceneName sceneName) =>
             sceneName
-                is SceneName.Game;
+                is SceneName.Core;
     }
 }
