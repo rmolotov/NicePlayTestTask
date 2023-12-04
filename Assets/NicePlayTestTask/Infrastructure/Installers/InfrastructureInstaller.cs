@@ -5,6 +5,8 @@ using NicePlayTestTask.Infrastructure.Factorises;
 using NicePlayTestTask.Infrastructure.SceneManagement;
 using NicePlayTestTask.Services.LevelProgress;
 using NicePlayTestTask.Services.Logging;
+using NicePlayTestTask.Services.PersistentData;
+using NicePlayTestTask.Services.SaveLoad;
 using NicePlayTestTask.Services.StaticData;
 
 namespace NicePlayTestTask.Infrastructure.Installers
@@ -28,8 +30,8 @@ namespace NicePlayTestTask.Infrastructure.Installers
             // Container.BindInterfacesAndSelfTo<InputService>().AsSingle().NonLazy();
             //
             Container.BindInterfacesAndSelfTo<LocalStaticDataService>().AsSingle().NonLazy(); // possible remote, initializable
-            // Container.BindInterfacesAndSelfTo<PersistentDataService>().AsSingle().NonLazy();
-            // Container.BindInterfacesAndSelfTo<SaveLoadLocalService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PersistentDataService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<LocalSaveLoadService>().AsSingle().NonLazy(); // possible remote
 
             Container.BindInterfacesAndSelfTo<LevelProgressServiceResolver>()
                 .AsSingle()
