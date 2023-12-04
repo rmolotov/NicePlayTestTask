@@ -1,0 +1,42 @@
+[
+  {
+    "Key": "JuicyMeat",
+    "Ingredients": {
+      "Meat": [5,5]
+    }
+  },
+  {
+    "Key": "MeatWithSideDishes",
+    "Ingredients": {
+      "Meat": [4,4]
+    }
+  },
+  {
+    "Key": "ChopSuey",
+    "Ingredients": {
+      "Meat": [2,3]
+    }
+  },
+  {
+    "Key": "VegetableStew",
+    "Ingredients": {
+      "Meat": [0,0]
+    }
+  },
+  {
+    "Key": "OnionSoup",
+    "Ingredients": {
+      "Onion": [4,5]
+    }
+  },
+  {
+    "Key": "PotatoSoup",
+    "Ingredients": {
+      "Potato": [4,5]
+    }
+  },
+  {
+    "Key": "Soup",
+    "Ingredients": {}
+  }
+]

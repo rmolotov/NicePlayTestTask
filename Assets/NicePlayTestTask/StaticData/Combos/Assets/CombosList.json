@@ -1,0 +1,22 @@
+[
+  {
+    "SameIngredientCount": 0,
+    "Multiplier": 2
+  },
+  {
+    "SameIngredientCount": 2,
+    "Multiplier": 2
+  },
+  {
+    "SameIngredientCount": 3,
+    "Multiplier": 1.5
+  },
+  {
+    "SameIngredientCount": 4,
+    "Multiplier": 1.25
+  },
+  {
+    "SameIngredientCount": 5,
+    "Multiplier": 1
+  }
+]

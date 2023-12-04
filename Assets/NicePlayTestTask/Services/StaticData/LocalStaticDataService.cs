@@ -4,8 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
 using NicePlayTestTask.Infrastructure.AssetManagement;
+using NicePlayTestTask.StaticData.Combos;
 using NicePlayTestTask.StaticData.Ingredients;
-
+using NicePlayTestTask.StaticData.Recipes;
 using static Newtonsoft.Json.JsonConvert;
 
 namespace NicePlayTestTask.Services.StaticData
@@ -13,10 +14,14 @@ namespace NicePlayTestTask.Services.StaticData
     public class LocalStaticDataService : IStaticDataService
     {
         private const string IngredientsListKey = "IngredientsList";
+        private const string CombosListKey      = "CombosList";
+        private const string RecipesListKey     = "RecipesList";
         
         private readonly IAssetProvider _assetProvider;
 
         private Dictionary<string, IngredientStaticData> _ingredients;
+        private Dictionary<int, ComboStaticData> _combos;
+        private Dictionary<string, RecipeStaticData> _recipes;
 
         public Action Initialized { get; set; }
 
@@ -29,7 +34,9 @@ namespace NicePlayTestTask.Services.StaticData
         public async void Initialize()
         {
             await Task.WhenAll(
-                LoadIngredients()
+                LoadIngredients(),
+                LoadCombos(),
+                LoadRecipes()
             );
             
             Initialized?.Invoke();
@@ -39,6 +46,16 @@ namespace NicePlayTestTask.Services.StaticData
             _ingredients.TryGetValue(ingredientKey, out var ingredientData)
                 ? ingredientData
                 : null;
+        
+        public ComboStaticData ForCombo(int sameIngredientCount) =>
+            _combos.TryGetValue(sameIngredientCount, out var comboData)
+                ? comboData
+                : null;
+        
+        public RecipeStaticData ForCombo(string recipeKey) =>
+            _recipes.TryGetValue(recipeKey, out var recipeData)
+                ? recipeData
+                : null;
 
         
         private async Task LoadIngredients()
@@ -47,6 +64,22 @@ namespace NicePlayTestTask.Services.StaticData
             var list = DeserializeObject<List<IngredientStaticData>>(jsonData.ToString());
             
             _ingredients = list.ToDictionary(x => x.Key, x => x);
+        }
+        
+        private async Task LoadCombos()
+        {
+            var jsonData = await _assetProvider.Load<TextAsset>(key: CombosListKey);
+            var list = DeserializeObject<List<ComboStaticData>>(jsonData.ToString());
+            
+            _combos = list.ToDictionary(x => x.SameIngredientCount, x => x);
+        }
+        
+        private async Task LoadRecipes()
+        {
+            var jsonData = await _assetProvider.Load<TextAsset>(key: RecipesListKey);
+            var list = DeserializeObject<List<RecipeStaticData>>(jsonData.ToString());
+            
+            _recipes = list.ToDictionary(x => x.Key, x => x);
         }
     }
 }
