@@ -2,6 +2,7 @@ using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Infrastructure.AssetManagement;
 using NicePlayTestTask.Infrastructure.Factorises;
+using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Infrastructure.SceneManagement;
 using NicePlayTestTask.Services.Input;
 using NicePlayTestTask.Services.LevelProgress;
@@ -52,8 +53,8 @@ namespace NicePlayTestTask.Infrastructure.Installers
             // Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
             //
             // Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
+            Container.Bind<IIngredientFactory>().To<IngredientFactory>().AsSingle();
             // Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();
-            // Container.Bind<IEnemyFactory>().To<EnemyFactory>().AsSingle();
         }
     }
 }

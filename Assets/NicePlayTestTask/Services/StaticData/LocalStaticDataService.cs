@@ -59,6 +59,15 @@ namespace NicePlayTestTask.Services.StaticData
                 ? recipeData
                 : null;
 
+        public List<IngredientStaticData> GetAllIngredients() =>
+            _ingredients.Values.ToList();
+        
+        public List<ComboStaticData> GetAllCombos() =>
+            _combos.Values.ToList();
+        
+        public List<RecipeStaticData> GetAllRecipes() =>
+            _recipes.Values.ToList();
+
         
         private async Task LoadIngredients()
         {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Zenject;
 using NicePlayTestTask.StaticData.Combos;
 using NicePlayTestTask.StaticData.Ingredients;
@@ -13,5 +14,9 @@ namespace NicePlayTestTask.Services.StaticData
         IngredientStaticData ForIngredient(string ingredientKey);
         ComboStaticData ForCombo(int sameIngredientCount);
         RecipeStaticData ForRecipe(string recipeKey);
+
+        List<IngredientStaticData> GetAllIngredients();
+        List<ComboStaticData> GetAllCombos();
+        List<RecipeStaticData> GetAllRecipes ();
     }
 }

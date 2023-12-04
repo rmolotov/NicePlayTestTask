@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using NicePlayTestTask.Services.Logging;
 using NicePlayTestTask.StaticData.Combos;
 using NicePlayTestTask.StaticData.Ingredients;
@@ -48,6 +49,22 @@ namespace NicePlayTestTask.Services.StaticData
         }
 
         public RecipeStaticData ForRecipe(string recipeKey)
+        {
+            throw new NotImplementedException();
+        }
+        
+
+        public List<IngredientStaticData> GetAllIngredients()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<ComboStaticData> GetAllCombos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<RecipeStaticData> GetAllRecipes()
         {
             throw new NotImplementedException();
         }

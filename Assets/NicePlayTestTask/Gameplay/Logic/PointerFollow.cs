@@ -20,11 +20,6 @@ namespace NicePlayTestTask.Gameplay.Logic
             _inputService = inputService;
         }
 
-        private void Start()
-        {
-            _inputService.Drag += BeginDrag;
-        }
-
         public void BeginDrag()
         {
             _inputService.Drag -= BeginDrag;
@@ -34,7 +29,7 @@ namespace NicePlayTestTask.Gameplay.Logic
             rigidbodyComponent.gravityScale = 0;
         }
 
-        public void EndDrag()
+        private void EndDrag()
         {
             _inputService.Drop -= EndDrag;
             _inputService.Drag += BeginDrag;
