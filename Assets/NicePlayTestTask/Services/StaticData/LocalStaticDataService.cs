@@ -7,6 +7,7 @@ using NicePlayTestTask.Infrastructure.AssetManagement;
 using NicePlayTestTask.StaticData.Combos;
 using NicePlayTestTask.StaticData.Ingredients;
 using NicePlayTestTask.StaticData.Recipes;
+
 using static Newtonsoft.Json.JsonConvert;
 
 namespace NicePlayTestTask.Services.StaticData
@@ -42,6 +43,7 @@ namespace NicePlayTestTask.Services.StaticData
             Initialized?.Invoke();
         }
 
+        
         public IngredientStaticData ForIngredient(string ingredientKey) =>
             _ingredients.TryGetValue(ingredientKey, out var ingredientData)
                 ? ingredientData
@@ -52,7 +54,7 @@ namespace NicePlayTestTask.Services.StaticData
                 ? comboData
                 : null;
         
-        public RecipeStaticData ForCombo(string recipeKey) =>
+        public RecipeStaticData ForRecipe(string recipeKey) =>
             _recipes.TryGetValue(recipeKey, out var recipeData)
                 ? recipeData
                 : null;
