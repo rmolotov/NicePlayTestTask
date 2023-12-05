@@ -9,20 +9,10 @@ namespace NicePlayTestTask.Gameplay.Logic
         public event Action PointerEnter;
         public event Action PointerExit;
 
-        // public void OnPointerEnter(PointerEventData eventData) => 
-        //     PointerEnter?.Invoke(eventData);
-        //
-        // public void OnPointerExit(PointerEventData eventData) => 
-        //     PointerExit?.Invoke(eventData);
-
-        private void OnMouseEnter()
-        {
+        private void OnMouseEnter() => 
             PointerEnter?.Invoke();
-        }
 
-        private void OnMouseExit()
-        {
+        private void OnMouseExit() => 
             PointerExit?.Invoke();
-        }
     }
 }

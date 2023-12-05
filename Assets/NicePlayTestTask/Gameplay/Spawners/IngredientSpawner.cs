@@ -1,14 +1,12 @@
-﻿using NicePlayTestTask.Gameplay.Ingredients;
-using NicePlayTestTask.Gameplay.Logic;
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Services.Logging;
+using NicePlayTestTask.Gameplay.Ingredients;
 
 namespace NicePlayTestTask.Gameplay.Spawners
 {
-    public class IngredientSpawner : MonoBehaviour, IPointerDownHandler
+    public class IngredientSpawner : MonoBehaviour
     {
         private IIngredientFactory _ingredientFactory;
         private ILoggingService _logger;
@@ -23,7 +21,7 @@ namespace NicePlayTestTask.Gameplay.Spawners
             _logger = loggingService;
         }
 
-        public void OnPointerDown(PointerEventData eventData)
+        public void OnMouseDown()
         {
             Spawn();
         }
