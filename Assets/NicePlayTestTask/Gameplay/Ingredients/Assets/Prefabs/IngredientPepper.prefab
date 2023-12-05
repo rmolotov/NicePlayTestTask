@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 1940991429052019840}
   - component: {fileID: 6989855526218103838}
   - component: {fileID: 4328310465881850879}
-  - component: {fileID: 6000992714816220360}
   m_Layer: 7
   m_Name: IngredientPepper
   m_TagString: Untagged
@@ -302,20 +301,6 @@ PolygonCollider2D:
       - {x: 0.72999996, y: -1.0849999}
       - {x: 0.79999995, y: -1.005}
   m_UseDelaunayMesh: 1
---- !u!114 &6000992714816220360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4125488208758330052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04723bf3233a40bda609f02ed8cbb3c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rigidbodyComponent: {fileID: 6989855526218103838}
-  speed: 2
 --- !u!1 &6169971311578515808
 GameObject:
   m_ObjectHideFlags: 0
