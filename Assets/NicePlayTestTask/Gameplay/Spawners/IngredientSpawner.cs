@@ -1,4 +1,5 @@
-﻿using NicePlayTestTask.Gameplay.Logic;
+﻿using NicePlayTestTask.Gameplay.Ingredients;
+using NicePlayTestTask.Gameplay.Logic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
@@ -30,7 +31,7 @@ namespace NicePlayTestTask.Gameplay.Spawners
         private async void Spawn()
         {
             var ingredient = await _ingredientFactory.Create(ingredientKey, spawnPoint.position);
-            ingredient.GetComponent<PointerFollow>().BeginDrag();
+            ingredient.GetComponentInChildren<IngredientPointerFollow>().BeginDrag();
         }
     }
 }

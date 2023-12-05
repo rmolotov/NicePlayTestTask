@@ -3,9 +3,9 @@ using Zenject;
 using DG.Tweening;
 using NicePlayTestTask.Services.Input;
 
-namespace NicePlayTestTask.Gameplay.Logic
+namespace NicePlayTestTask.Gameplay.Ingredients
 {
-    public class PointerFollow : MonoBehaviour
+    public class IngredientPointerFollow : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D rigidbodyComponent;
         [SerializeField] private float speed = 0.1f;
@@ -19,21 +19,17 @@ namespace NicePlayTestTask.Gameplay.Logic
         {
             _inputService = inputService;
         }
-
+        
         public void BeginDrag()
         {
-            _inputService.Drag -= BeginDrag;
             _inputService.Drop += EndDrag;
-            
             _inputService.PointerPositionChanged += UpdatePosition;
             rigidbodyComponent.gravityScale = 0;
         }
 
-        private void EndDrag()
+        public void EndDrag()
         {
             _inputService.Drop -= EndDrag;
-            _inputService.Drag += BeginDrag;
-            
             _inputService.PointerPositionChanged -= UpdatePosition;
             rigidbodyComponent.gravityScale = 1;
         }
