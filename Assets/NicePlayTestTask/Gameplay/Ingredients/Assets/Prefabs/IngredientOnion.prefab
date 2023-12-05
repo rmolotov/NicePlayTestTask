@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 4771867629678645030}
   - component: {fileID: 1776609279235957000}
   - component: {fileID: 834492935819464652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: IngredientOnion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

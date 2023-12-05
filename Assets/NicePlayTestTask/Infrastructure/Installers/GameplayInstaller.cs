@@ -1,6 +1,7 @@
-using NicePlayTestTask.Gameplay.Logic;
 using UnityEngine;
 using Zenject;
+using NicePlayTestTask.Services.Interaction;
+using NicePlayTestTask.Gameplay.Logic;
 
 namespace NicePlayTestTask.Infrastructure.Installers
 {
@@ -11,6 +12,7 @@ namespace NicePlayTestTask.Infrastructure.Installers
         public override void InstallBindings()
         {
             Container.BindInstance(levelProgressWatcher);
+            Container.BindInterfacesTo<InteractionService>().AsSingle().NonLazy();
         }
     }
 }

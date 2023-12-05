@@ -478,7 +478,7 @@ GameObject:
   - component: {fileID: 162859016}
   - component: {fileID: 162859018}
   - component: {fileID: 162859019}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPotato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -942,7 +942,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 492527405}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -1208,7 +1208,7 @@ GameObject:
   - component: {fileID: 571044890}
   - component: {fileID: 571044892}
   - component: {fileID: 571044893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPeppers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1574,7 +1574,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 859377519}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -1688,7 +1688,7 @@ GameObject:
   - component: {fileID: 1086018261}
   - component: {fileID: 1086018263}
   - component: {fileID: 1086018264}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnOnion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2078,7 +2078,7 @@ GameObject:
   - component: {fileID: 1178553697}
   - component: {fileID: 1178553699}
   - component: {fileID: 1178553700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnCarrots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2428,7 +2428,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1324500257}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -2540,7 +2540,7 @@ GameObject:
   - component: {fileID: 1427365164}
   - component: {fileID: 1427365166}
   - component: {fileID: 1427365167}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnMeat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2796,7 +2796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1758728837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -2827,7 +2827,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1960608795}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
