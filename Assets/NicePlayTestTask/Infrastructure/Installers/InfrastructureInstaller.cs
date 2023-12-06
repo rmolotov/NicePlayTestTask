@@ -50,8 +50,8 @@ namespace NicePlayTestTask.Infrastructure.Installers
         private void BindFactories()
         {
             Container.BindInterfacesAndSelfTo<StateFactory>().AsSingle();
-            // Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
-            //
+            Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            
             // Container.Bind<ILevelFactory>().To<LevelFactory>().AsSingle();
             Container.Bind<IIngredientFactory>().To<IngredientFactory>().AsSingle();
             // Container.Bind<IPlayerFactory>().To<PlayerFactory>().AsSingle();

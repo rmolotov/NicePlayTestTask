@@ -10,15 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Default Local Group
+  m_Name: Meta
   m_EditorClassIdentifier: 
-  m_GroupName: Default Local Group
+  m_GroupName: Meta
   m_Data:
     m_SerializedData: []
-  m_GUID: fa4a506d4823a0e4498213c427e38124
+  m_GUID: 1e626a7e7a094274b8f6670f1ea17a4c
   m_SerializeEntries:
-  - m_GUID: 97421a456d5b4194db1392c30fcf69f7
-    m_Address: UIRootPrefab
+  - m_GUID: 8bd9b4e2fe8596d4b9c8b0812c3fc3b4
+    m_Address: MainMenuPrefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f60c5cc024fa20444b3a7ffa952ef7df
+    m_Address: HudPrefab
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -26,5 +31,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 86b741738eca4304e82894d38ce3b320, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 876b436b5576dc344a828ad224814d6c, type: 2}
-    - {fileID: 11400000, guid: 7c9c59fcbcce5264689d59cac56add75, type: 2}
+    - {fileID: 11400000, guid: a0768ca44aa966443be0ee6fd753011d, type: 2}
+    - {fileID: 11400000, guid: 4ebdee40af3a9f442808d744de7f62f9, type: 2}
