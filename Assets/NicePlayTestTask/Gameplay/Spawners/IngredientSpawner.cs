@@ -3,6 +3,7 @@ using Zenject;
 using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Services.Logging;
 using NicePlayTestTask.Gameplay.Ingredients;
+using NicePlayTestTask.Gameplay.Ingredients.Components;
 
 namespace NicePlayTestTask.Gameplay.Spawners
 {

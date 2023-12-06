@@ -2,7 +2,7 @@ using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Services.Input;
 
-namespace NicePlayTestTask.Gameplay.Ingredients
+namespace NicePlayTestTask.Gameplay.Ingredients.Components
 {
     [RequireComponent(typeof(Collider2D))]
     public class IngredientInteraction : MonoBehaviour

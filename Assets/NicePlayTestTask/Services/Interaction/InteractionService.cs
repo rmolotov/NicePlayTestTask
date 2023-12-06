@@ -2,6 +2,7 @@ using UnityEngine;
 using NicePlayTestTask.Services.Input;
 using NicePlayTestTask.Services.Logging;
 using NicePlayTestTask.Gameplay.Ingredients;
+using NicePlayTestTask.Gameplay.Ingredients.Components;
 
 namespace NicePlayTestTask.Services.Interaction
 {

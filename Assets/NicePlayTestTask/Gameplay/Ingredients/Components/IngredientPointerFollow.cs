@@ -3,7 +3,7 @@ using Zenject;
 using DG.Tweening;
 using NicePlayTestTask.Services.Input;
 
-namespace NicePlayTestTask.Gameplay.Ingredients
+namespace NicePlayTestTask.Gameplay.Ingredients.Components
 {
     public class IngredientPointerFollow : MonoBehaviour
     {

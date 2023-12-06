@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 1776609279235957000}
   - component: {fileID: 834492935819464652}
   - component: {fileID: -8611968883576534951}
+  - component: {fileID: 4238023028435085001}
   m_Layer: 7
   m_Name: IngredientOnion
   m_TagString: Untagged
@@ -262,6 +263,19 @@ PolygonCollider2D:
       - {x: 0.14999999, y: -1.2099999}
       - {x: 0.22999999, y: -1.1999999}
   m_UseDelaunayMesh: 1
+--- !u!114 &4238023028435085001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346058293118298615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c953b56d3b8c40b8a2bcc3ae8be6af67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IngredientKey>k__BackingField: Onion
 --- !u!1 &6380471071022421598
 GameObject:
   m_ObjectHideFlags: 0

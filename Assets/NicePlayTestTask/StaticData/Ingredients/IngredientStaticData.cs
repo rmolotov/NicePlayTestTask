@@ -6,6 +6,6 @@ namespace NicePlayTestTask.StaticData.Ingredients
     public record IngredientStaticData
     {
         public string Key { get; set; }
-        public string Cost { get; set; }
+        public int Cost { get; set; }
     }
 }

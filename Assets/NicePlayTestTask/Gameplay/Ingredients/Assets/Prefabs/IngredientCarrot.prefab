@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 5151608216023850809}
   - component: {fileID: 7096705797825296223}
   - component: {fileID: 7957619443358259237}
+  - component: {fileID: 1351589440075314192}
   m_Layer: 7
   m_Name: IngredientCarrot
   m_TagString: Untagged
@@ -275,6 +276,19 @@ PolygonCollider2D:
       - {x: 2.0449998, y: -0.34}
       - {x: 2.095, y: -0.25}
   m_UseDelaunayMesh: 1
+--- !u!114 &1351589440075314192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613069840270731559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c953b56d3b8c40b8a2bcc3ae8be6af67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IngredientKey>k__BackingField: Carrot
 --- !u!1 &6758096490552094662
 GameObject:
   m_ObjectHideFlags: 0

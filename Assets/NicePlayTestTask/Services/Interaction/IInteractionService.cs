@@ -1,6 +1,7 @@
 using System;
 using Zenject;
 using NicePlayTestTask.Gameplay.Ingredients;
+using NicePlayTestTask.Gameplay.Ingredients.Components;
 
 namespace NicePlayTestTask.Services.Interaction
 {

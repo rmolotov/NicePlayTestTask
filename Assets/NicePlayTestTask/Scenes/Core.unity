@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 42577094}
   - component: {fileID: 42577093}
   - component: {fileID: 42577095}
+  - component: {fileID: 42577096}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -334,7 +335,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -5.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1659777307}
   m_Father: {fileID: 877952556}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!68 &42577095
@@ -382,6 +384,18 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!114 &42577096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42577092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d53a6c01e694372ae030d882948af76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &115352801
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,6 +2801,103 @@ PolygonCollider2D:
       - {x: 0.22999999, y: 0.01}
       - {x: 0.35999998, y: 0}
   m_UseDelaunayMesh: 1
+--- !u!1 &1659777306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1659777307}
+  - component: {fileID: 1659777310}
+  - component: {fileID: 1659777309}
+  - component: {fileID: 1659777308}
+  m_Layer: 0
+  m_Name: IngredientHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1659777307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659777306}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 42577094}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1659777308
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659777306}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 375
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 1.25}
+  m_Size: {x: 5, y: 2}
+  m_Direction: 1
+--- !u!114 &1659777309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659777306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee729ad8cbb24ca6b90c014231aa084c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1659777310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659777306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf0e09b1cb6402f9ac1fb5d2f9065a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredientObserver: {fileID: 1659777309}
+  cauldron: {fileID: 42577096}
 --- !u!1 &1758728836
 GameObject:
   m_ObjectHideFlags: 0

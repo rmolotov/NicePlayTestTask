@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 3465193858639277938}
   - component: {fileID: 9186929888633717216}
   - component: {fileID: 3045944552431452395}
+  - component: {fileID: 5829439456078525170}
   m_Layer: 7
   m_Name: IngredientPotato
   m_TagString: Untagged
@@ -295,6 +296,19 @@ PolygonCollider2D:
       - {x: 0.385, y: -1.24}
       - {x: 0.45499998, y: -1.1999999}
   m_UseDelaunayMesh: 1
+--- !u!114 &5829439456078525170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3738971318093791661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c953b56d3b8c40b8a2bcc3ae8be6af67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IngredientKey>k__BackingField: Potato
 --- !u!1 &7474978142240102173
 GameObject:
   m_ObjectHideFlags: 0
