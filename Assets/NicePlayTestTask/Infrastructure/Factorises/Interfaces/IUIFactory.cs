@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using UnityEngine;
 using NicePlayTestTask.Meta.HUD;
 using NicePlayTestTask.Meta.Menu;
 
@@ -11,7 +12,7 @@ namespace NicePlayTestTask.Infrastructure.Factorises.Interfaces
         Task WarmUp();
         void CleanUp();
         
-        Task CreateUIRoot();
+        Task<Canvas> CreateUIRoot();
         Task<HUDController> CreateHud();
         Task<MenuController> CreateMainMenu();
     }

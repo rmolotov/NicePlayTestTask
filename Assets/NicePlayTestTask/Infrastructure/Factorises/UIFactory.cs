@@ -49,7 +49,7 @@ namespace NicePlayTestTask.Infrastructure.Factorises
             _assetProvider.Release(key: MenuPrefabId);
         
 
-        public async Task CreateUIRoot() =>
+        public async Task<Canvas> CreateUIRoot() =>
             _uiRoot ??= _container
                 .InstantiatePrefab(
                     await _assetProvider.Load<GameObject>(key: UIRootPrefabId),
