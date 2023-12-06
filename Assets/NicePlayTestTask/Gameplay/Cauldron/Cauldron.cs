@@ -4,6 +4,7 @@ using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Services.Logging;
 using NicePlayTestTask.Services.StaticData;
+using NicePlayTestTask.Services.LevelProgress;
 using NicePlayTestTask.StaticData.Ingredients;
 
 namespace NicePlayTestTask.Gameplay.Cauldron
@@ -12,14 +13,20 @@ namespace NicePlayTestTask.Gameplay.Cauldron
     {
         private ILoggingService _loggingService;
         private IStaticDataService _staticDataService;
+        private ILevelProgressService _levelProgressService;
 
         private List<IngredientStaticData> _ingredients = new();
 
         [Inject]
-        private void Construct(ILoggingService logger, IStaticDataService staticDataService)
+        private void Construct(
+            ILoggingService logger, 
+            IStaticDataService staticDataService,
+            ILevelProgressService levelProgressService
+            )
         {
             _loggingService = logger;
             _staticDataService = staticDataService;
+            _levelProgressService = levelProgressService;
         }
 
         public void AddIngredient(string ingredientKey)
@@ -36,7 +43,10 @@ namespace NicePlayTestTask.Gameplay.Cauldron
         private void Cook()
         {
             var sum = _ingredients.Sum(i => i.Cost);
+            
             _loggingService.LogMessage($"dish ({sum}) cooked", this);
+            _levelProgressService.LevelProgressWatcher.CurrentScore += sum;
+            
             _ingredients.Clear();
         }
     }

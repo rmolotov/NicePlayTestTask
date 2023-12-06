@@ -3,6 +3,7 @@ using UnityEngine;
 using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Infrastructure.GameStateMachine.States.Interfaces;
 using NicePlayTestTask.Infrastructure.SceneManagement;
+using NicePlayTestTask.Services.LevelProgress;
 
 namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
 {
@@ -11,17 +12,19 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly IUIFactory _uiFactory;
-        
+        private readonly ILevelProgressService _levelProgressService;
+
         private Canvas _uiRoot;
 
-        public LoadLevelState(
-            GameStateMachine gameStateMachine, 
+        public LoadLevelState(GameStateMachine gameStateMachine,
             SceneLoader sceneLoader,
-            IUIFactory uiFactory)
+            IUIFactory uiFactory,
+            ILevelProgressService levelProgressService)
         {
             _stateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
+            _levelProgressService = levelProgressService;
         }
         
         public async void Enter(string payload)
@@ -58,7 +61,10 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
 
         private async Task InitUI()
         {
-            await _uiFactory.CreateHud();
+            var hud = await _uiFactory.CreateHud();
+
+            _levelProgressService.LevelProgressWatcher.ScoreChanged += hud.UpdateScore;
+            
             _uiRoot.enabled = true;
         }
     }
