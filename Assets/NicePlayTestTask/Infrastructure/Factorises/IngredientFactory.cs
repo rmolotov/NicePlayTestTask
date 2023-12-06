@@ -5,6 +5,7 @@ using Zenject;
 using NicePlayTestTask.Infrastructure.AssetManagement;
 using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Services.StaticData;
+using NicePlayTestTask.Tools.CustomExtensions;
 
 namespace NicePlayTestTask.Infrastructure.Factorises
 {
@@ -38,14 +39,12 @@ namespace NicePlayTestTask.Infrastructure.Factorises
                 _assetProvider.Release(key: IngredientKeyPrefix + ingredientStaticData.Key);
         }
 
-        public async Task<GameObject> Create(string key, Vector2 at)
-        {
-            var prefab = await _assetProvider.Load<GameObject>(key: IngredientKeyPrefix + key);
-            var ingredient = Object.Instantiate(prefab, at, quaternion.identity);
-            
-            _container.InjectGameObject(ingredient);
-
-            return ingredient;
-        }
+        public async Task<GameObject> Create(string key, Vector2 at) =>
+            _container
+                .InstantiatePrefab(
+                    await _assetProvider.Load<GameObject>(key: IngredientKeyPrefix + key),
+                    at,
+                    quaternion.identity,
+                    null);
     }
 }
