@@ -15,7 +15,7 @@ namespace NicePlayTestTask.Gameplay.Cauldron
         
         private ILoggingService _loggingService;
         
-        [SerializeField, Required] private IDishScoreHandler headOfHandlersChain;
+        [SerializeField, Required] private BaseHandler headOfHandlersChain;
 
         private List<string> _ingredients = new(CauldronCapacity);
 

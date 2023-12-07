@@ -20,7 +20,9 @@
   {
     "Key": "VegetableStew",
     "Ingredients": {
-      "Meat": [0,0]
+      "Meat": [0,0],
+      "Onion": [0,3],
+      "Potato": [0,3]
     }
   },
   {
@@ -34,9 +36,5 @@
     "Ingredients": {
       "Potato": [4,5]
     }
-  },
-  {
-    "Key": "Soup",
-    "Ingredients": {}
   }
 ]
