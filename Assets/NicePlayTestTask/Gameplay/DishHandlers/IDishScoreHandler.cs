@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NicePlayTestTask.Data;
 
 namespace NicePlayTestTask.Gameplay.DishHandlers
 {
@@ -8,6 +9,6 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
     public interface IDishScoreHandler
     {
         IDishScoreHandler Successor { get; set; }
-        void Handle(Dictionary<string, int> ingredientsCounts);
+        void Handle(Dictionary<string, DishIngredientData> ingredients);
     }
 }

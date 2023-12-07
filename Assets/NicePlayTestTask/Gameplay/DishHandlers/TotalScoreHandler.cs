@@ -2,44 +2,49 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using Sirenix.OdinInspector;
+using NicePlayTestTask.Data;
 using NicePlayTestTask.Services.LevelProgress;
 using NicePlayTestTask.Services.Logging;
-using NicePlayTestTask.Services.StaticData;
 
 namespace NicePlayTestTask.Gameplay.DishHandlers
 {
     /// <summary>
     /// Chain of responsibility
     /// </summary>
-    public class ScoreHandler : MonoBehaviour, IDishScoreHandler
+    public class TotalScoreHandler : SerializedMonoBehaviour, IDishScoreHandler
     {
         private ILoggingService _loggingService;
-        private IStaticDataService _staticDataService;
         private ILevelProgressService _levelProgressService;
         
         [field: SerializeField] public IDishScoreHandler Successor { get; set; }
         
         [Inject]
         private void Construct(
-            ILoggingService logger, 
-            IStaticDataService staticDataService,
+            ILoggingService logger,
             ILevelProgressService levelProgressService
         )
         {
             _loggingService = logger;
-            _staticDataService = staticDataService;
             _levelProgressService = levelProgressService;
         }
         
-        public void Handle(Dictionary<string, int> ingredientsCounts)
+        public void Handle(Dictionary<string, DishIngredientData> ingredients)
         {
-            var totalScore = ingredientsCounts.Keys.Sum(key =>
-                _staticDataService.ForIngredient(ingredientKey: key).Cost
-                * ingredientsCounts[key]
+            if (gameObject.activeInHierarchy)
+                HandleBySelf(ingredients);
+            Successor?.Handle(ingredients);
+        }
+
+        private void HandleBySelf(Dictionary<string, DishIngredientData> ingredients)
+        {
+            var totalScore = ingredients.Keys.Sum(key =>
+                ingredients[key].Cost
+                * ingredients[key].Count
             );
-            
+
             _loggingService.LogMessage($"dish [{totalScore}] cooked", this);
-            _levelProgressService.LevelProgressWatcher.CurrentScore += totalScore;
+            _levelProgressService.LevelProgressWatcher.CurrentScore += (int)totalScore;
         }
     }
 }

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using NicePlayTestTask.Data;
 using UnityEngine;
 using Zenject;
 using Sirenix.OdinInspector;
 using NicePlayTestTask.Services.Logging;
 using NicePlayTestTask.Gameplay.DishHandlers;
+using NicePlayTestTask.Tools.CustomExtensions;
 
 namespace NicePlayTestTask.Gameplay.Cauldron
 {
@@ -35,11 +37,11 @@ namespace NicePlayTestTask.Gameplay.Cauldron
         
         private void Cook()
         {
-            var uniqueIngredients = new Dictionary<string, int>();
+            var uniqueIngredients = new Dictionary<string, DishIngredientData>();
             foreach (var ingredient in _ingredients)
                 uniqueIngredients[ingredient] = uniqueIngredients.TryGetValue(ingredient, out var value)
-                    ? value + 1
-                    : 1;
+                    ? value.With(v => v.Count++)
+                    : new DishIngredientData(ingredient);
             
             headOfHandlersChain.Handle(uniqueIngredients);
             _ingredients.Clear();
