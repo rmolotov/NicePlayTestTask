@@ -10,7 +10,7 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
         protected override void HandleBySelf(CookedDishData dishData)
         {
             foreach (var ingredient in dishData.Ingredients)
-                ingredient.Value.Cost = StaticDataService.ForIngredient(ingredient.Key).Cost;
+                ingredient.Value.BaseCost = StaticDataService.ForIngredient(ingredient.Key).Cost;
         }
     }
 }

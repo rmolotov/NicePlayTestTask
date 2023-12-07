@@ -107,7 +107,16 @@ namespace NicePlayTestTask.Services.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""LoadSave"",
+                    ""name"": ""SaveProgress"",
+                    ""type"": ""Button"",
+                    ""id"": ""08cf6d96-ada9-4d49-bf3a-31014b1bb846"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadProgress"",
                     ""type"": ""Button"",
                     ""id"": ""0c26b699-6b94-4642-9ed5-8abdb3f1a248"",
                     ""expectedControlType"": ""Button"",
@@ -144,7 +153,7 @@ namespace NicePlayTestTask.Services.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LoadSave"",
+                    ""action"": ""LoadProgress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -156,6 +165,17 @@ namespace NicePlayTestTask.Services.Input
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ShowCombinations"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dec56899-e023-4065-89d3-6095464cd3f8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SaveProgress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -172,7 +192,8 @@ namespace NicePlayTestTask.Services.Input
             // Hotkeys
             m_Hotkeys = asset.FindActionMap("Hotkeys", throwIfNotFound: true);
             m_Hotkeys_ReloadScene = m_Hotkeys.FindAction("ReloadScene", throwIfNotFound: true);
-            m_Hotkeys_LoadSave = m_Hotkeys.FindAction("LoadSave", throwIfNotFound: true);
+            m_Hotkeys_SaveProgress = m_Hotkeys.FindAction("SaveProgress", throwIfNotFound: true);
+            m_Hotkeys_LoadProgress = m_Hotkeys.FindAction("LoadProgress", throwIfNotFound: true);
             m_Hotkeys_ShowCombinations = m_Hotkeys.FindAction("ShowCombinations", throwIfNotFound: true);
         }
 
@@ -298,14 +319,16 @@ namespace NicePlayTestTask.Services.Input
         private readonly InputActionMap m_Hotkeys;
         private List<IHotkeysActions> m_HotkeysActionsCallbackInterfaces = new List<IHotkeysActions>();
         private readonly InputAction m_Hotkeys_ReloadScene;
-        private readonly InputAction m_Hotkeys_LoadSave;
+        private readonly InputAction m_Hotkeys_SaveProgress;
+        private readonly InputAction m_Hotkeys_LoadProgress;
         private readonly InputAction m_Hotkeys_ShowCombinations;
         public struct HotkeysActions
         {
             private @PlayerControls m_Wrapper;
             public HotkeysActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @ReloadScene => m_Wrapper.m_Hotkeys_ReloadScene;
-            public InputAction @LoadSave => m_Wrapper.m_Hotkeys_LoadSave;
+            public InputAction @SaveProgress => m_Wrapper.m_Hotkeys_SaveProgress;
+            public InputAction @LoadProgress => m_Wrapper.m_Hotkeys_LoadProgress;
             public InputAction @ShowCombinations => m_Wrapper.m_Hotkeys_ShowCombinations;
             public InputActionMap Get() { return m_Wrapper.m_Hotkeys; }
             public void Enable() { Get().Enable(); }
@@ -319,9 +342,12 @@ namespace NicePlayTestTask.Services.Input
                 @ReloadScene.started += instance.OnReloadScene;
                 @ReloadScene.performed += instance.OnReloadScene;
                 @ReloadScene.canceled += instance.OnReloadScene;
-                @LoadSave.started += instance.OnLoadSave;
-                @LoadSave.performed += instance.OnLoadSave;
-                @LoadSave.canceled += instance.OnLoadSave;
+                @SaveProgress.started += instance.OnSaveProgress;
+                @SaveProgress.performed += instance.OnSaveProgress;
+                @SaveProgress.canceled += instance.OnSaveProgress;
+                @LoadProgress.started += instance.OnLoadProgress;
+                @LoadProgress.performed += instance.OnLoadProgress;
+                @LoadProgress.canceled += instance.OnLoadProgress;
                 @ShowCombinations.started += instance.OnShowCombinations;
                 @ShowCombinations.performed += instance.OnShowCombinations;
                 @ShowCombinations.canceled += instance.OnShowCombinations;
@@ -332,9 +358,12 @@ namespace NicePlayTestTask.Services.Input
                 @ReloadScene.started -= instance.OnReloadScene;
                 @ReloadScene.performed -= instance.OnReloadScene;
                 @ReloadScene.canceled -= instance.OnReloadScene;
-                @LoadSave.started -= instance.OnLoadSave;
-                @LoadSave.performed -= instance.OnLoadSave;
-                @LoadSave.canceled -= instance.OnLoadSave;
+                @SaveProgress.started -= instance.OnSaveProgress;
+                @SaveProgress.performed -= instance.OnSaveProgress;
+                @SaveProgress.canceled -= instance.OnSaveProgress;
+                @LoadProgress.started -= instance.OnLoadProgress;
+                @LoadProgress.performed -= instance.OnLoadProgress;
+                @LoadProgress.canceled -= instance.OnLoadProgress;
                 @ShowCombinations.started -= instance.OnShowCombinations;
                 @ShowCombinations.performed -= instance.OnShowCombinations;
                 @ShowCombinations.canceled -= instance.OnShowCombinations;
@@ -364,7 +393,8 @@ namespace NicePlayTestTask.Services.Input
         public interface IHotkeysActions
         {
             void OnReloadScene(InputAction.CallbackContext context);
-            void OnLoadSave(InputAction.CallbackContext context);
+            void OnSaveProgress(InputAction.CallbackContext context);
+            void OnLoadProgress(InputAction.CallbackContext context);
             void OnShowCombinations(InputAction.CallbackContext context);
         }
     }

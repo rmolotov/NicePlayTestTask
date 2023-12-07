@@ -83,7 +83,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LoadSave",
+                    "name": "SaveProgress",
+                    "type": "Button",
+                    "id": "08cf6d96-ada9-4d49-bf3a-31014b1bb846",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadProgress",
                     "type": "Button",
                     "id": "0c26b699-6b94-4642-9ed5-8abdb3f1a248",
                     "expectedControlType": "Button",
@@ -120,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LoadSave",
+                    "action": "LoadProgress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -132,6 +141,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ShowCombinations",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dec56899-e023-4065-89d3-6095464cd3f8",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SaveProgress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

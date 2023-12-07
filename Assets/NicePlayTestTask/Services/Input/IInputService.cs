@@ -11,7 +11,8 @@ namespace NicePlayTestTask.Services.Input
         Action Drop { get; set; }
         
         Action ReloadScene { get; set; }
-        Action LoadSave { get; set; }
+        Action SaveProgress { get; set; }
+        Action LoadProgress { get; set; }
         Action ShowCombinations { get; set; }
     }
 }

@@ -5,11 +5,12 @@ namespace NicePlayTestTask.Data
     [Serializable]
     public class DishIngredientData
     {
-        public DishIngredientData(string key, int cost = 0, int count = 1) =>
-            (Key, Cost, Count) = (key, cost, count);
+        public DishIngredientData(string key, int cost = 0, float multiplier = 1f, int count = 1) =>
+            (Key, BaseCost, Multiplier, Count) = (key, cost, multiplier, count);
         
         public string Key { get; set; }
-        public float Cost { get; set; }
+        public int BaseCost { get; set; }
+        public float Multiplier { get; set; }
         public int Count { get; set; }
     }
 }

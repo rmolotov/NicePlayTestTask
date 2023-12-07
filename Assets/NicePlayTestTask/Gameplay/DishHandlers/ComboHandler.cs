@@ -14,11 +14,11 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
             if (dishData.Ingredients.Values.All(i => i.Count == 1))
             {
                 foreach (var key in dishData.Ingredients.Keys)
-                    dishData.Ingredients[key].Cost *= StaticDataService.ForCombo(0).Multiplier;
+                    dishData.Ingredients[key].Multiplier = StaticDataService.ForCombo(0).Multiplier;
             }
             
             foreach (var key in dishData.Ingredients.Keys)
-                dishData.Ingredients[key].Cost *= StaticDataService.ForCombo(dishData.Ingredients[key].Count).Multiplier;
+                dishData.Ingredients[key].Multiplier = StaticDataService.ForCombo(dishData.Ingredients[key].Count).Multiplier;
         }
     }
 }

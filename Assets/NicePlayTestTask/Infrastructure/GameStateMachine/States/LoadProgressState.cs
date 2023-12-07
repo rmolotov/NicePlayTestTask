@@ -45,8 +45,8 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
             new()
             {
                 Score = 0,
-                BestDish = new Dictionary<string, int>(),
-                LastDish = new Dictionary<string, int>(),
+                BestDish = null,
+                LastDish = null,
                 UnlockedRecipes = new HashSet<string>()
             };
     }

@@ -14,7 +14,8 @@ namespace NicePlayTestTask.Services.Input
         public Action Drop { get; set; }
 
         public Action ReloadScene { get; set; }
-        public Action LoadSave { get; set; }
+        public Action LoadProgress { get; set; }
+        public Action SaveProgress { get; set; }
         public Action ShowCombinations { get; set; }
 
         public InputService()
@@ -41,8 +42,9 @@ namespace NicePlayTestTask.Services.Input
                 _controls.Gameplay.Drop.performed += OnPointerRelease;
 
                 _controls.Hotkeys.ReloadScene.performed      += OnReloadScene;
-                _controls.Hotkeys.LoadSave.performed         += OnReloadScene;
-                _controls.Hotkeys.ShowCombinations.performed += OnReloadScene;
+                _controls.Hotkeys.SaveProgress.performed     += OnSaveProgress;
+                _controls.Hotkeys.LoadProgress.performed     += OnLoadProgress;
+                _controls.Hotkeys.ShowCombinations.performed += OnShowCombinations;
 
             }
             else
@@ -54,8 +56,9 @@ namespace NicePlayTestTask.Services.Input
                 _controls.Gameplay.Drop.performed -= OnPointerRelease;
                 
                 _controls.Hotkeys.ReloadScene.performed      -= OnReloadScene;
-                _controls.Hotkeys.LoadSave.performed         -= OnReloadScene;
-                _controls.Hotkeys.ShowCombinations.performed -= OnReloadScene;
+                _controls.Hotkeys.SaveProgress.performed     -= OnSaveProgress;
+                _controls.Hotkeys.LoadProgress.performed     -= OnLoadProgress;
+                _controls.Hotkeys.ShowCombinations.performed -= OnShowCombinations;
             }
         }
 
@@ -74,8 +77,11 @@ namespace NicePlayTestTask.Services.Input
         private void OnReloadScene(InputAction.CallbackContext ctx) =>
             ReloadScene?.Invoke();
 
-        private void OnLoadSave(InputAction.CallbackContext ctx) =>
-            LoadSave?.Invoke();
+        private void OnSaveProgress(InputAction.CallbackContext ctx) =>
+            SaveProgress?.Invoke();
+        
+        private void OnLoadProgress(InputAction.CallbackContext ctx) =>
+            LoadProgress?.Invoke();
 
         private void OnShowCombinations(InputAction.CallbackContext ctx) =>
             ShowCombinations?.Invoke();

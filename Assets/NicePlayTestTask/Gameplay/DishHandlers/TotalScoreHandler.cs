@@ -24,8 +24,9 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
         protected override void HandleBySelf(CookedDishData dishData)
         {
             dishData.TotalCost = (int)dishData.Ingredients.Keys.Sum(key =>
-                dishData.Ingredients[key].Cost
+                dishData.Ingredients[key].BaseCost
                 * dishData.Ingredients[key].Count
+                * dishData.Ingredients[key].Multiplier
             );
             
             
