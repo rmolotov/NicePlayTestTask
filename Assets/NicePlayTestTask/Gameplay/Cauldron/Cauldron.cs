@@ -1,52 +1,47 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using Zenject;
+using Sirenix.OdinInspector;
 using NicePlayTestTask.Services.Logging;
-using NicePlayTestTask.Services.StaticData;
-using NicePlayTestTask.Services.LevelProgress;
-using NicePlayTestTask.StaticData.Ingredients;
+using NicePlayTestTask.Gameplay.DishHandlers;
 
 namespace NicePlayTestTask.Gameplay.Cauldron
 {
-    public class Cauldron : MonoBehaviour
+    public class Cauldron : SerializedMonoBehaviour
     {
+        private const int CauldronCapacity = 5;
+        
         private ILoggingService _loggingService;
-        private IStaticDataService _staticDataService;
-        private ILevelProgressService _levelProgressService;
+        
+        [SerializeField, Required] private IDishScoreHandler headOfHandlersChain;
 
-        private List<IngredientStaticData> _ingredients = new();
+        private List<string> _ingredients = new(CauldronCapacity);
+
 
         [Inject]
-        private void Construct(
-            ILoggingService logger, 
-            IStaticDataService staticDataService,
-            ILevelProgressService levelProgressService
-            )
+        private void Construct(ILoggingService logger)
         {
             _loggingService = logger;
-            _staticDataService = staticDataService;
-            _levelProgressService = levelProgressService;
         }
 
         public void AddIngredient(string ingredientKey)
         {
-            var staticData = _staticDataService.ForIngredient(ingredientKey: ingredientKey);
-            _ingredients.Add(staticData);
+            _ingredients.Add(ingredientKey);
+            _loggingService.LogMessage($"{ingredientKey} added", this);
             
-            _loggingService.LogMessage($"{ingredientKey} ({staticData.Cost}) added", this);
-            
-            if (_ingredients.Count == 5)
+            if (_ingredients.Count == CauldronCapacity)
                 Cook();
         }
         
         private void Cook()
         {
-            var sum = _ingredients.Sum(i => i.Cost);
+            var uniqueIngredients = new Dictionary<string, int>();
+            foreach (var ingredient in _ingredients)
+                uniqueIngredients[ingredient] = uniqueIngredients.TryGetValue(ingredient, out var value)
+                    ? value + 1
+                    : 1;
             
-            _loggingService.LogMessage($"dish ({sum}) cooked", this);
-            _levelProgressService.LevelProgressWatcher.CurrentScore += sum;
-            
+            headOfHandlersChain.Handle(uniqueIngredients);
             _ingredients.Clear();
         }
     }
