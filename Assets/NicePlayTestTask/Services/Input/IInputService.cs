@@ -9,5 +9,9 @@ namespace NicePlayTestTask.Services.Input
         
         Action Drag { get; set; }
         Action Drop { get; set; }
+        
+        Action ReloadScene { get; set; }
+        Action LoadSave { get; set; }
+        Action ShowCombinations { get; set; }
     }
 }

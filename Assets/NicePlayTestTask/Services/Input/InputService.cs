@@ -13,6 +13,10 @@ namespace NicePlayTestTask.Services.Input
         public Action Drag { get; set; }
         public Action Drop { get; set; }
 
+        public Action ReloadScene { get; set; }
+        public Action LoadSave { get; set; }
+        public Action ShowCombinations { get; set; }
+
         public InputService()
         {
             _controls = new PlayerControls();
@@ -35,7 +39,11 @@ namespace NicePlayTestTask.Services.Input
 
                 _controls.Gameplay.Drag.performed += OnPointerPress;
                 _controls.Gameplay.Drop.performed += OnPointerRelease;
-                
+
+                _controls.Hotkeys.ReloadScene.performed      += OnReloadScene;
+                _controls.Hotkeys.LoadSave.performed         += OnReloadScene;
+                _controls.Hotkeys.ShowCombinations.performed += OnReloadScene;
+
             }
             else
             {
@@ -44,6 +52,10 @@ namespace NicePlayTestTask.Services.Input
 
                 _controls.Gameplay.Drag.performed -= OnPointerPress;
                 _controls.Gameplay.Drop.performed -= OnPointerRelease;
+                
+                _controls.Hotkeys.ReloadScene.performed      -= OnReloadScene;
+                _controls.Hotkeys.LoadSave.performed         -= OnReloadScene;
+                _controls.Hotkeys.ShowCombinations.performed -= OnReloadScene;
             }
         }
 
@@ -57,6 +69,16 @@ namespace NicePlayTestTask.Services.Input
         
         private void OnPointerRelease(InputAction.CallbackContext ctx) =>
             Drop?.Invoke();
+
+
+        private void OnReloadScene(InputAction.CallbackContext ctx) =>
+            ReloadScene?.Invoke();
+
+        private void OnLoadSave(InputAction.CallbackContext ctx) =>
+            LoadSave?.Invoke();
+
+        private void OnShowCombinations(InputAction.CallbackContext ctx) =>
+            ShowCombinations?.Invoke();
 
         #endregion
     }

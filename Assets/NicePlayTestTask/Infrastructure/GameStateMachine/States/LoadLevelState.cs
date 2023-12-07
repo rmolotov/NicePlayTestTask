@@ -62,7 +62,8 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
         private async Task InitUI()
         {
             var hud = await _uiFactory.CreateHud();
-
+            hud.Reset();
+            
             _levelProgressService.LevelProgressWatcher.ScoreChanged += hud.UpdateScore;
             _levelProgressService.LevelProgressWatcher.BestDishChanged += hud.UpdateBestDish;
             _levelProgressService.LevelProgressWatcher.LastDishChanged += hud.UpdateLastDish;

@@ -92,6 +92,74 @@ namespace NicePlayTestTask.Services.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Hotkeys"",
+            ""id"": ""79877735-2a52-412a-81ef-08710c494609"",
+            ""actions"": [
+                {
+                    ""name"": ""ReloadScene"",
+                    ""type"": ""Button"",
+                    ""id"": ""51263c92-fcda-499b-a146-4adff4fbbfba"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadSave"",
+                    ""type"": ""Button"",
+                    ""id"": ""0c26b699-6b94-4642-9ed5-8abdb3f1a248"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowCombinations"",
+                    ""type"": ""Button"",
+                    ""id"": ""43394b26-e0f3-4222-9b8c-29647f6106a9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b9b14ee0-70c0-41fb-a137-60eed892f1c1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReloadScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10d3af76-1205-4dc2-a901-07a735cbf017"",
+                    ""path"": ""<Keyboard>/l"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadSave"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2f15aedb-1ef2-4c6d-96d6-a34f58b05288"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShowCombinations"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -101,6 +169,11 @@ namespace NicePlayTestTask.Services.Input
             m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
             m_Gameplay_Drag = m_Gameplay.FindAction("Drag", throwIfNotFound: true);
             m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
+            // Hotkeys
+            m_Hotkeys = asset.FindActionMap("Hotkeys", throwIfNotFound: true);
+            m_Hotkeys_ReloadScene = m_Hotkeys.FindAction("ReloadScene", throwIfNotFound: true);
+            m_Hotkeys_LoadSave = m_Hotkeys.FindAction("LoadSave", throwIfNotFound: true);
+            m_Hotkeys_ShowCombinations = m_Hotkeys.FindAction("ShowCombinations", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -220,11 +293,79 @@ namespace NicePlayTestTask.Services.Input
             }
         }
         public GameplayActions @Gameplay => new GameplayActions(this);
+
+        // Hotkeys
+        private readonly InputActionMap m_Hotkeys;
+        private List<IHotkeysActions> m_HotkeysActionsCallbackInterfaces = new List<IHotkeysActions>();
+        private readonly InputAction m_Hotkeys_ReloadScene;
+        private readonly InputAction m_Hotkeys_LoadSave;
+        private readonly InputAction m_Hotkeys_ShowCombinations;
+        public struct HotkeysActions
+        {
+            private @PlayerControls m_Wrapper;
+            public HotkeysActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @ReloadScene => m_Wrapper.m_Hotkeys_ReloadScene;
+            public InputAction @LoadSave => m_Wrapper.m_Hotkeys_LoadSave;
+            public InputAction @ShowCombinations => m_Wrapper.m_Hotkeys_ShowCombinations;
+            public InputActionMap Get() { return m_Wrapper.m_Hotkeys; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(HotkeysActions set) { return set.Get(); }
+            public void AddCallbacks(IHotkeysActions instance)
+            {
+                if (instance == null || m_Wrapper.m_HotkeysActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_HotkeysActionsCallbackInterfaces.Add(instance);
+                @ReloadScene.started += instance.OnReloadScene;
+                @ReloadScene.performed += instance.OnReloadScene;
+                @ReloadScene.canceled += instance.OnReloadScene;
+                @LoadSave.started += instance.OnLoadSave;
+                @LoadSave.performed += instance.OnLoadSave;
+                @LoadSave.canceled += instance.OnLoadSave;
+                @ShowCombinations.started += instance.OnShowCombinations;
+                @ShowCombinations.performed += instance.OnShowCombinations;
+                @ShowCombinations.canceled += instance.OnShowCombinations;
+            }
+
+            private void UnregisterCallbacks(IHotkeysActions instance)
+            {
+                @ReloadScene.started -= instance.OnReloadScene;
+                @ReloadScene.performed -= instance.OnReloadScene;
+                @ReloadScene.canceled -= instance.OnReloadScene;
+                @LoadSave.started -= instance.OnLoadSave;
+                @LoadSave.performed -= instance.OnLoadSave;
+                @LoadSave.canceled -= instance.OnLoadSave;
+                @ShowCombinations.started -= instance.OnShowCombinations;
+                @ShowCombinations.performed -= instance.OnShowCombinations;
+                @ShowCombinations.canceled -= instance.OnShowCombinations;
+            }
+
+            public void RemoveCallbacks(IHotkeysActions instance)
+            {
+                if (m_Wrapper.m_HotkeysActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            public void SetCallbacks(IHotkeysActions instance)
+            {
+                foreach (var item in m_Wrapper.m_HotkeysActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_HotkeysActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        public HotkeysActions @Hotkeys => new HotkeysActions(this);
         public interface IGameplayActions
         {
             void OnMove(InputAction.CallbackContext context);
             void OnDrag(InputAction.CallbackContext context);
             void OnDrop(InputAction.CallbackContext context);
+        }
+        public interface IHotkeysActions
+        {
+            void OnReloadScene(InputAction.CallbackContext context);
+            void OnLoadSave(InputAction.CallbackContext context);
+            void OnShowCombinations(InputAction.CallbackContext context);
         }
     }
 }

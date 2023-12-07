@@ -6,7 +6,9 @@ namespace NicePlayTestTask.Services.LevelProgress
     {
         public LevelProgressWatcher LevelProgressWatcher { get; set; }
 
-        public void InitForLevel(LevelProgressWatcher levelController) =>
+        public void InitForLevel(LevelProgressWatcher levelController)
+        {
             LevelProgressWatcher = levelController;
+        }
     }
 }

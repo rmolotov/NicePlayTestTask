@@ -68,6 +68,74 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Hotkeys",
+            "id": "79877735-2a52-412a-81ef-08710c494609",
+            "actions": [
+                {
+                    "name": "ReloadScene",
+                    "type": "Button",
+                    "id": "51263c92-fcda-499b-a146-4adff4fbbfba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LoadSave",
+                    "type": "Button",
+                    "id": "0c26b699-6b94-4642-9ed5-8abdb3f1a248",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowCombinations",
+                    "type": "Button",
+                    "id": "43394b26-e0f3-4222-9b8c-29647f6106a9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b9b14ee0-70c0-41fb-a137-60eed892f1c1",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReloadScene",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10d3af76-1205-4dc2-a901-07a735cbf017",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LoadSave",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f15aedb-1ef2-4c6d-96d6-a34f58b05288",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowCombinations",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

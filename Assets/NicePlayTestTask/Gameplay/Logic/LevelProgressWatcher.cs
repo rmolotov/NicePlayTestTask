@@ -3,13 +3,14 @@ using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Data;
 using NicePlayTestTask.Infrastructure.GameStateMachine;
+using NicePlayTestTask.Infrastructure.GameStateMachine.States;
 using NicePlayTestTask.Services.Logging;
 
 namespace NicePlayTestTask.Gameplay.Logic
 {
     public class LevelProgressWatcher : MonoBehaviour
     {
-        private GameStateMachine _gameStateMachine;
+        private GameStateMachine _stateMachine;
         private ILoggingService _loggingService;
 
         #region Score Rx Property
@@ -54,13 +55,18 @@ namespace NicePlayTestTask.Gameplay.Logic
         [Inject]
         private void Construct(GameStateMachine gameStateMachine, ILoggingService loggingService)
         {
-            _gameStateMachine = gameStateMachine;
+            _stateMachine = gameStateMachine;
             _loggingService = loggingService;
         }
 
         public void RunLevel()
         {
             _loggingService.LogMessage($"level ran", this);
+        }
+
+        public void RestartLevel()
+        {
+            _stateMachine.Enter<LoadLevelState, string>("game");
         }
     }
 }

@@ -63,7 +63,8 @@ namespace NicePlayTestTask.Infrastructure.Factorises
                     await _assetProvider.Load<GameObject>(key: HudPrefabId),
                     _uiRoot.transform)
                 .With(hud => hud.name = "HUD")
-                .GetComponent<HUDController>();
+                .GetComponent<HUDController>()
+                .With(c => c.Initialize());
 
         public async Task<MenuController> CreateMainMenu() =>
             Object
