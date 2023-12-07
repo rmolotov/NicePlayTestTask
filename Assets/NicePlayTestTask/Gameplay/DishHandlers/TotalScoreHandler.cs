@@ -23,13 +23,22 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
         
         protected override void HandleBySelf(CookedDishData dishData)
         {
-            var totalScore = dishData.Ingredients.Keys.Sum(key =>
+            dishData.TotalCost = (int)dishData.Ingredients.Keys.Sum(key =>
                 dishData.Ingredients[key].Cost
                 * dishData.Ingredients[key].Count
             );
+            
+            
+            _levelProgressService.LevelProgressWatcher.CurrentScore += dishData.TotalCost;
 
-            _loggingService.LogMessage($"{dishData.DishKey} [{totalScore}] cooked", this);
-            _levelProgressService.LevelProgressWatcher.CurrentScore += (int)totalScore;
+            _levelProgressService.LevelProgressWatcher.LastDishData = dishData;
+
+            if (_levelProgressService.LevelProgressWatcher.BestDishData == null 
+                || dishData.TotalCost > _levelProgressService.LevelProgressWatcher.BestDishData.TotalCost)
+                _levelProgressService.LevelProgressWatcher.BestDishData = dishData;
+            
+            
+            _loggingService.LogMessage($"{dishData.DishKey} [{dishData.TotalCost}] cooked", this);
         }
     }
 }

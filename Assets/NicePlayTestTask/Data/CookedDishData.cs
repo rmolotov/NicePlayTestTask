@@ -10,5 +10,6 @@ namespace NicePlayTestTask.Data
         [CanBeNull] 
         public string DishKey { get; set; }
         public Dictionary<string, DishIngredientData> Ingredients { get; set; } = new();
+        public int TotalCost { get; set; }
     }
 }

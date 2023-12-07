@@ -64,6 +64,8 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
             var hud = await _uiFactory.CreateHud();
 
             _levelProgressService.LevelProgressWatcher.ScoreChanged += hud.UpdateScore;
+            _levelProgressService.LevelProgressWatcher.BestDishChanged += hud.UpdateBestDish;
+            _levelProgressService.LevelProgressWatcher.LastDishChanged += hud.UpdateLastDish;
             
             _uiRoot.enabled = true;
         }

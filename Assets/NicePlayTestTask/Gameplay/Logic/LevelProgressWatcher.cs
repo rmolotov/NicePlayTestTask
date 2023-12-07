@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Zenject;
+using NicePlayTestTask.Data;
 using NicePlayTestTask.Infrastructure.GameStateMachine;
 using NicePlayTestTask.Services.Logging;
 
@@ -20,6 +21,32 @@ namespace NicePlayTestTask.Gameplay.Logic
             set => ScoreChanged?.Invoke(_currentScore = value);
         }
         public event Action<int> ScoreChanged;
+
+        #endregion
+
+        #region Best dish Rx Property
+
+        private CookedDishData _bestDishData;
+
+        public CookedDishData BestDishData
+        {
+            get => _bestDishData;
+            set => BestDishChanged?.Invoke(_bestDishData = value);
+        }
+        public event Action<CookedDishData> BestDishChanged; 
+
+        #endregion
+        
+        #region Last dish Rx Property
+
+        private CookedDishData _lastDishData;
+
+        public CookedDishData LastDishData
+        {
+            get => _lastDishData;
+            set => LastDishChanged?.Invoke(_lastDishData = value);
+        }
+        public event Action<CookedDishData> LastDishChanged; 
 
         #endregion
 
