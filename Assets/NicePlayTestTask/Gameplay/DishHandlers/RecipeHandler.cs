@@ -27,7 +27,8 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
             _levelProgressService = levelProgressService;
         }
 
-        protected override void HandleBySelf(Dictionary<string, DishIngredientData> ingredients)
+        [CanBeNull]
+        protected override string HandleBySelf(Dictionary<string, DishIngredientData> ingredients, string dishKey = null)
         {
             // check recipes
             foreach (var recipeKey in StaticDataService
@@ -36,11 +37,13 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
                          .Where(recipeKey => recipeKey != null))
             {
                 ReportRecipe(recipeKey);
-                return;
+                return recipeKey;
             }
 
             // report default
             ReportRecipe(DefaultRecipeKey);
+
+            return DefaultRecipeKey;
         }
 
         [CanBeNull]

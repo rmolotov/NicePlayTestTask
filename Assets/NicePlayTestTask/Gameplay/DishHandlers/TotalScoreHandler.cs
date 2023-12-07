@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
 using Zenject;
 using NicePlayTestTask.Data;
 using NicePlayTestTask.Services.LevelProgress;
@@ -22,15 +23,18 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
             _levelProgressService = levelProgressService;
         }
         
-        protected override void HandleBySelf(Dictionary<string, DishIngredientData> ingredients)
+        [CanBeNull]
+        protected override string HandleBySelf(Dictionary<string, DishIngredientData> ingredients, string dishKey = null)
         {
             var totalScore = ingredients.Keys.Sum(key =>
                 ingredients[key].Cost
                 * ingredients[key].Count
             );
 
-            _loggingService.LogMessage($"dish [{totalScore}] cooked", this);
+            _loggingService.LogMessage($"{dishKey} [{totalScore}] cooked", this);
             _levelProgressService.LevelProgressWatcher.CurrentScore += (int)totalScore;
+
+            return dishKey;
         }
     }
 }
