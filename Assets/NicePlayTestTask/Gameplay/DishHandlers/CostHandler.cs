@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using NicePlayTestTask.Data;
 
 namespace NicePlayTestTask.Gameplay.DishHandlers
@@ -9,13 +7,10 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
     /// </summary>
     public class CostHandler : BaseHandler
     {
-        [CanBeNull]
-        protected override string HandleBySelf(Dictionary<string, DishIngredientData> ingredients, string dishKey = null)
+        protected override void HandleBySelf(CookedDishData dishData)
         {
-            foreach (var ingredient in ingredients)
+            foreach (var ingredient in dishData.Ingredients)
                 ingredient.Value.Cost = StaticDataService.ForIngredient(ingredient.Key).Cost;
-
-            return dishKey;
         }
     }
 }

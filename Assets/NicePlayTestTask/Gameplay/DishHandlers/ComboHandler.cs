@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using NicePlayTestTask.Data;
 
 namespace NicePlayTestTask.Gameplay.DishHandlers
@@ -10,21 +8,17 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
     /// </summary>
     public class ComboHandler : BaseHandler
     {
-        [CanBeNull]
-        protected override string HandleBySelf(Dictionary<string, DishIngredientData> ingredients, string dishKey = null)
+        protected override void HandleBySelf(CookedDishData dishData)
         {
             // all ingredients is unique
-            if (ingredients.Values.All(i => i.Count == 1))
+            if (dishData.Ingredients.Values.All(i => i.Count == 1))
             {
-                foreach (var key in ingredients.Keys)
-                    ingredients[key].Cost *= StaticDataService.ForCombo(0).Multiplier;
-                return dishKey;
+                foreach (var key in dishData.Ingredients.Keys)
+                    dishData.Ingredients[key].Cost *= StaticDataService.ForCombo(0).Multiplier;
             }
             
-            foreach (var key in ingredients.Keys)
-                ingredients[key].Cost *= StaticDataService.ForCombo(ingredients[key].Count).Multiplier;
-
-            return dishKey;
+            foreach (var key in dishData.Ingredients.Keys)
+                dishData.Ingredients[key].Cost *= StaticDataService.ForCombo(dishData.Ingredients[key].Count).Multiplier;
         }
     }
 }

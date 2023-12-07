@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Data;
@@ -20,19 +18,18 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
         private void Construct(IStaticDataService staticDataService) =>
             StaticDataService = staticDataService;
 
-        public void Handle(Dictionary<string, DishIngredientData> ingredients, string dishKey = null)
+        public void Handle(CookedDishData dishData)
         {
             if (gameObject.activeInHierarchy)
-                dishKey = HandleBySelf(ingredients, dishKey);
+                HandleBySelf(dishData);
 
             if (Successor != null)
-                Successor.Handle(ingredients, dishKey);
+                Successor.Handle(dishData);
         }
 
-        [CanBeNull]
-        protected virtual string HandleBySelf(Dictionary<string, DishIngredientData> ingredients, string dishKey = null)
+        protected virtual void HandleBySelf(CookedDishData dishData)
         {
-            return dishKey;
+            
         }
     }
 }

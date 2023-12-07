@@ -37,13 +37,13 @@ namespace NicePlayTestTask.Gameplay.Cauldron
         
         private void Cook()
         {
-            var uniqueIngredients = new Dictionary<string, DishIngredientData>();
+            var dishData = new CookedDishData();
             foreach (var ingredient in _ingredients)
-                uniqueIngredients[ingredient] = uniqueIngredients.TryGetValue(ingredient, out var value)
+                dishData.Ingredients[ingredient] = dishData.Ingredients.TryGetValue(ingredient, out var value)
                     ? value.With(v => v.Count++)
                     : new DishIngredientData(ingredient);
             
-            headOfHandlersChain.Handle(uniqueIngredients);
+            headOfHandlersChain.Handle(dishData);
             _ingredients.Clear();
         }
     }
