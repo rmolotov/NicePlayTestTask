@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Zenject;
 using DG.Tweening;
@@ -13,6 +14,7 @@ namespace NicePlayTestTask.Gameplay.Ingredients.Components
         private IInputService _inputService;
 
         private Sequence _moveSequence;
+        private bool _dragged = false;
 
         [Inject]
         private void Construct(IInputService inputService)
@@ -25,6 +27,8 @@ namespace NicePlayTestTask.Gameplay.Ingredients.Components
             _inputService.Drop += EndDrag;
             _inputService.PointerPositionChanged += UpdatePosition;
             rigidbodyComponent.gravityScale = 0;
+
+            _dragged = true;
         }
 
         public void EndDrag()
@@ -32,6 +36,8 @@ namespace NicePlayTestTask.Gameplay.Ingredients.Components
             _inputService.Drop -= EndDrag;
             _inputService.PointerPositionChanged -= UpdatePosition;
             rigidbodyComponent.gravityScale = 1;
+
+            _dragged = false;
         }
 
         private void UpdatePosition(Vector2 pointerPosition)
@@ -45,6 +51,15 @@ namespace NicePlayTestTask.Gameplay.Ingredients.Components
                         1f / speed)
                 )
                 .Play();
+        }
+
+        private void OnDestroy()
+        {
+            if (_dragged)
+            {
+                EndDrag();
+                _moveSequence?.Complete();
+            }
         }
     }
 }
