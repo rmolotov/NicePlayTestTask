@@ -50,7 +50,7 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
         
         private async Task InitUIRoot()
         {
-            _uiRoot = await _uiFactory.CreateUIRoot();
+            _uiRoot = await _uiFactory.GetOrCreateUIRoot();
             _uiRoot.enabled = false;
         }
 
@@ -61,7 +61,7 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
 
         private async Task InitUI()
         {
-            var hud = await _uiFactory.CreateHud();
+            var hud = await _uiFactory.GetOrCreateHud();
             hud.Reset();
             
             _levelProgressService.LevelProgressWatcher.ScoreChanged += hud.UpdateScore;

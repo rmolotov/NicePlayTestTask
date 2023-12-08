@@ -7,6 +7,7 @@ using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Services.StaticData;
 using NicePlayTestTask.Meta.HUD;
 using NicePlayTestTask.Meta.Menu;
+using NicePlayTestTask.Meta.CombinationsList;
 
 namespace NicePlayTestTask.Infrastructure.Factorises
 {
@@ -17,14 +18,16 @@ namespace NicePlayTestTask.Infrastructure.Factorises
         private const string UIRootPrefabId = "UIRootPrefab";
         private const string HudPrefabId    = "HudPrefab";
         private const string MenuPrefabId   = "MainMenuPrefab";
+        
+        private const string CombinationsWindowPrefabId = "CombinationsWindowPrefab";
 
         private readonly DiContainer _container;
         private readonly IAssetProvider _assetProvider;
         private readonly IStaticDataService _staticDataService;
 
         private Canvas _uiRoot;
-
-        public HUDController HUDController { get; private set; }
+        private HUDController _hud;
+        private CombinationsWindow _combinationsWindow;
 
         public UIFactory(
             DiContainer container, 
@@ -49,7 +52,7 @@ namespace NicePlayTestTask.Infrastructure.Factorises
             _assetProvider.Release(key: MenuPrefabId);
         
 
-        public async Task<Canvas> CreateUIRoot() =>
+        public async Task<Canvas> GetOrCreateUIRoot() =>
             _uiRoot ??= _container
                 .InstantiatePrefab(
                     await _assetProvider.Load<GameObject>(key: UIRootPrefabId),
@@ -57,8 +60,8 @@ namespace NicePlayTestTask.Infrastructure.Factorises
                 .With(root => root.name = "UI Root")
                 .GetComponent<Canvas>();
 
-        public async Task<HUDController> CreateHud() =>
-            HUDController ??= _container
+        public async Task<HUDController> GetOrCreateHud() =>
+            _hud ??= _container
                 .InstantiatePrefab(
                     await _assetProvider.Load<GameObject>(key: HudPrefabId),
                     _uiRoot.transform)
@@ -72,6 +75,12 @@ namespace NicePlayTestTask.Infrastructure.Factorises
                 .GetComponent<MenuController>()
                 .With(menu => _container.InjectGameObject(menu.gameObject))
                 .With(menu => menu.Initialize());
-        
+
+        public async Task<CombinationsWindow> GetOrCreateCombinationsWindow() =>
+            _combinationsWindow ??= _container
+                .InstantiatePrefab(
+                    await _assetProvider.Load<GameObject>(key: CombinationsWindowPrefabId),
+                    _uiRoot.transform)
+                .GetComponent<CombinationsWindow>();
     }
 }

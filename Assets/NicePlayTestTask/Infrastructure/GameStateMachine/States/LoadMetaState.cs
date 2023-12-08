@@ -36,7 +36,7 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
             );
 
         private async Task InitUIRoot() => 
-            await _uiFactory.CreateUIRoot();
+            await _uiFactory.GetOrCreateUIRoot();
 
         private async Task InitMainMenu() =>
             await _uiFactory.CreateMainMenu();
