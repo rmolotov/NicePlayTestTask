@@ -66,7 +66,7 @@ namespace NicePlayTestTask.Gameplay.Logic
 
         public void RestartLevel()
         {
-            _stateMachine.Enter<LoadLevelState, string>("game");
+            _stateMachine.Enter<LoadLevelState, bool>(false);
         }
     }
 }

@@ -3,32 +3,37 @@ using UnityEngine;
 using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
 using NicePlayTestTask.Infrastructure.GameStateMachine.States.Interfaces;
 using NicePlayTestTask.Infrastructure.SceneManagement;
+using NicePlayTestTask.Services.PersistentData;
 using NicePlayTestTask.Services.LevelProgress;
 
 namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
 {
-    public class LoadLevelState : IPayloadedState<string>
+    public class LoadLevelState : IPayloadedState<bool>
     {
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly IUIFactory _uiFactory;
+        private readonly IPersistentDataService _persistentDataService;
         private readonly ILevelProgressService _levelProgressService;
 
         private Canvas _uiRoot;
+        private bool _needProgress = false;
 
         public LoadLevelState(GameStateMachine gameStateMachine,
             SceneLoader sceneLoader,
             IUIFactory uiFactory,
-            ILevelProgressService levelProgressService)
+            ILevelProgressService levelProgressService, IPersistentDataService persistentDataService)
         {
             _stateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
+            _persistentDataService = persistentDataService;
             _levelProgressService = levelProgressService;
         }
         
-        public async void Enter(string payload)
+        public async void Enter(bool payload)
         {
+            _needProgress = payload;
             var sceneInstance = await _sceneLoader.Load(SceneName.Core, OnLoaded);
         }
 
@@ -67,8 +72,18 @@ namespace NicePlayTestTask.Infrastructure.GameStateMachine.States
             _levelProgressService.LevelProgressWatcher.ScoreChanged += hud.UpdateScore;
             _levelProgressService.LevelProgressWatcher.BestDishChanged += hud.UpdateBestDish;
             _levelProgressService.LevelProgressWatcher.LastDishChanged += hud.UpdateLastDish;
+
+            if (_needProgress)
+                LoadProgressFromSave();
             
             _uiRoot.enabled = true;
+        }
+
+        private void LoadProgressFromSave()
+        {
+            _levelProgressService.LevelProgressWatcher.CurrentScore = _persistentDataService.Progress.Score;
+            _levelProgressService.LevelProgressWatcher.BestDishData = _persistentDataService.Progress.BestDish;
+            _levelProgressService.LevelProgressWatcher.LastDishData = _persistentDataService.Progress.LastDish;
         }
     }
 }

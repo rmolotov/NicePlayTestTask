@@ -53,12 +53,10 @@ namespace NicePlayTestTask.Gameplay.Logic
             
             _inputService.SaveProgress += () =>
             {
-                if (_levelProgressService.LevelProgressWatcher.BestDishData == null ||
-                    _levelProgressService.LevelProgressWatcher.LastDishData == null)
+                if (_levelProgressService.LevelProgressWatcher.LastDishData == null)
                 {
                     _loggingService.LogWarning("save aborted, there's no last dish data!", this);
                 }
-
                 else
                 {
                     _persistentDataService.Progress.Score    = _levelProgressService.LevelProgressWatcher.CurrentScore;
@@ -71,11 +69,16 @@ namespace NicePlayTestTask.Gameplay.Logic
             
             _inputService.LoadProgress += () =>
             {
-                _levelProgressService.LevelProgressWatcher.CurrentScore = _persistentDataService.Progress.Score;
-                _levelProgressService.LevelProgressWatcher.BestDishData = _persistentDataService.Progress.BestDish;
-                _levelProgressService.LevelProgressWatcher.LastDishData = _persistentDataService.Progress.LastDish;
-                
-                _saveLoadService.SaveProgress();
+                if (_persistentDataService.Progress.LastDish == null)
+                {
+                    _loggingService.LogWarning("loading aborted, there's no last dish data!", this);
+                }
+                else
+                {
+                    _levelProgressService.LevelProgressWatcher.CurrentScore = _persistentDataService.Progress.Score;
+                    _levelProgressService.LevelProgressWatcher.BestDishData = _persistentDataService.Progress.BestDish;
+                    _levelProgressService.LevelProgressWatcher.LastDishData = _persistentDataService.Progress.LastDish;
+                }
             };
 
             _inputService.ShowCombinations += () =>
