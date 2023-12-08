@@ -12,13 +12,13 @@ namespace NicePlayTestTask.Gameplay.DishHandlers
         {
             // all ingredients is unique
             if (dishData.Ingredients.Values.All(i => i.Count == 1))
-            {
                 foreach (var key in dishData.Ingredients.Keys)
-                    dishData.Ingredients[key].Multiplier = StaticDataService.ForCombo(0).Multiplier;
-            }
-            
-            foreach (var key in dishData.Ingredients.Keys)
-                dishData.Ingredients[key].Multiplier = StaticDataService.ForCombo(dishData.Ingredients[key].Count).Multiplier;
+                    dishData.Ingredients[key].Multiplier =
+                        StaticDataService.ForCombo(1).Multiplier;
+            else
+                foreach (var key in dishData.Ingredients.Keys)
+                    dishData.Ingredients[key].Multiplier =
+                        StaticDataService.ForCombo(dishData.Ingredients[key].Count).Multiplier;
         }
     }
 }
