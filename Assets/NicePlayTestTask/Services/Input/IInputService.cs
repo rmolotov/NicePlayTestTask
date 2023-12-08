@@ -14,5 +14,6 @@ namespace NicePlayTestTask.Services.Input
         Action SaveProgress { get; set; }
         Action LoadProgress { get; set; }
         Action ShowCombinations { get; set; }
+        Action ReturnToMenu { get; set; }
     }
 }

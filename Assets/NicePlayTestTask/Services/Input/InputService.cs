@@ -17,6 +17,7 @@ namespace NicePlayTestTask.Services.Input
         public Action LoadProgress { get; set; }
         public Action SaveProgress { get; set; }
         public Action ShowCombinations { get; set; }
+        public Action ReturnToMenu { get; set; }
 
         public InputService()
         {
@@ -45,7 +46,7 @@ namespace NicePlayTestTask.Services.Input
                 _controls.Hotkeys.SaveProgress.performed     += OnSaveProgress;
                 _controls.Hotkeys.LoadProgress.performed     += OnLoadProgress;
                 _controls.Hotkeys.ShowCombinations.performed += OnShowCombinations;
-
+                _controls.Hotkeys.ReturnToMenu.performed     += OnReturnToMenu;
             }
             else
             {
@@ -59,6 +60,7 @@ namespace NicePlayTestTask.Services.Input
                 _controls.Hotkeys.SaveProgress.performed     -= OnSaveProgress;
                 _controls.Hotkeys.LoadProgress.performed     -= OnLoadProgress;
                 _controls.Hotkeys.ShowCombinations.performed -= OnShowCombinations;
+                _controls.Hotkeys.ReturnToMenu.performed     -= OnReturnToMenu;
             }
         }
 
@@ -85,6 +87,9 @@ namespace NicePlayTestTask.Services.Input
 
         private void OnShowCombinations(InputAction.CallbackContext ctx) =>
             ShowCombinations?.Invoke();
+
+        private void OnReturnToMenu(InputAction.CallbackContext ctx) =>
+            ReturnToMenu?.Invoke();
 
         #endregion
     }

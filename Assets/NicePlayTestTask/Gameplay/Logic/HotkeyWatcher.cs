@@ -1,6 +1,8 @@
 using UnityEngine;
 using Zenject;
 using NicePlayTestTask.Infrastructure.Factorises.Interfaces;
+using NicePlayTestTask.Infrastructure.GameStateMachine;
+using NicePlayTestTask.Infrastructure.GameStateMachine.States;
 using NicePlayTestTask.Meta.CombinationsList;
 using NicePlayTestTask.Services.Input;
 using NicePlayTestTask.Services.Logging;
@@ -13,6 +15,7 @@ namespace NicePlayTestTask.Gameplay.Logic
 {
     public class HotkeyWatcher : MonoBehaviour
     {
+        private GameStateMachine _stateMachine;
         private IUIFactory _uiFactory;
         private IInputService _inputService;
         private ILoggingService _loggingService;
@@ -25,6 +28,7 @@ namespace NicePlayTestTask.Gameplay.Logic
 
         [Inject]
         private void Construct(
+            GameStateMachine stateMachine,
             IUIFactory uiFactory,
             ILoggingService loggingService,
             IInputService inputService,
@@ -33,6 +37,7 @@ namespace NicePlayTestTask.Gameplay.Logic
             ILevelProgressService levelProgressService,
             ISaveLoadService saveLoadService)
         {
+            _stateMachine = stateMachine;
             _uiFactory = uiFactory;
             _loggingService = loggingService;
             _inputService = inputService;
@@ -84,6 +89,11 @@ namespace NicePlayTestTask.Gameplay.Logic
             _inputService.ShowCombinations += () =>
             {
                 _combinationsWindow.InitAndShow(_staticDataService.GetAllIngredients());
+            };
+
+            _inputService.ReturnToMenu += () =>
+            {
+                _stateMachine.Enter<LoadMetaState>();
             };
         }
 

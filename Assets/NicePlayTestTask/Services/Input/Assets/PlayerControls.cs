@@ -104,7 +104,7 @@ namespace NicePlayTestTask.Services.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""SaveProgress"",
@@ -113,7 +113,7 @@ namespace NicePlayTestTask.Services.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""LoadProgress"",
@@ -122,7 +122,7 @@ namespace NicePlayTestTask.Services.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ShowCombinations"",
@@ -131,7 +131,16 @@ namespace NicePlayTestTask.Services.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ReturnToMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""ca6dc784-fe50-40e9-a88a-d8b74eb9d3d1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -178,6 +187,17 @@ namespace NicePlayTestTask.Services.Input
                     ""action"": ""SaveProgress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""80d77ebf-b1c9-4529-919b-3d5839e4a782"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReturnToMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -195,6 +215,7 @@ namespace NicePlayTestTask.Services.Input
             m_Hotkeys_SaveProgress = m_Hotkeys.FindAction("SaveProgress", throwIfNotFound: true);
             m_Hotkeys_LoadProgress = m_Hotkeys.FindAction("LoadProgress", throwIfNotFound: true);
             m_Hotkeys_ShowCombinations = m_Hotkeys.FindAction("ShowCombinations", throwIfNotFound: true);
+            m_Hotkeys_ReturnToMenu = m_Hotkeys.FindAction("ReturnToMenu", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -322,6 +343,7 @@ namespace NicePlayTestTask.Services.Input
         private readonly InputAction m_Hotkeys_SaveProgress;
         private readonly InputAction m_Hotkeys_LoadProgress;
         private readonly InputAction m_Hotkeys_ShowCombinations;
+        private readonly InputAction m_Hotkeys_ReturnToMenu;
         public struct HotkeysActions
         {
             private @PlayerControls m_Wrapper;
@@ -330,6 +352,7 @@ namespace NicePlayTestTask.Services.Input
             public InputAction @SaveProgress => m_Wrapper.m_Hotkeys_SaveProgress;
             public InputAction @LoadProgress => m_Wrapper.m_Hotkeys_LoadProgress;
             public InputAction @ShowCombinations => m_Wrapper.m_Hotkeys_ShowCombinations;
+            public InputAction @ReturnToMenu => m_Wrapper.m_Hotkeys_ReturnToMenu;
             public InputActionMap Get() { return m_Wrapper.m_Hotkeys; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -351,6 +374,9 @@ namespace NicePlayTestTask.Services.Input
                 @ShowCombinations.started += instance.OnShowCombinations;
                 @ShowCombinations.performed += instance.OnShowCombinations;
                 @ShowCombinations.canceled += instance.OnShowCombinations;
+                @ReturnToMenu.started += instance.OnReturnToMenu;
+                @ReturnToMenu.performed += instance.OnReturnToMenu;
+                @ReturnToMenu.canceled += instance.OnReturnToMenu;
             }
 
             private void UnregisterCallbacks(IHotkeysActions instance)
@@ -367,6 +393,9 @@ namespace NicePlayTestTask.Services.Input
                 @ShowCombinations.started -= instance.OnShowCombinations;
                 @ShowCombinations.performed -= instance.OnShowCombinations;
                 @ShowCombinations.canceled -= instance.OnShowCombinations;
+                @ReturnToMenu.started -= instance.OnReturnToMenu;
+                @ReturnToMenu.performed -= instance.OnReturnToMenu;
+                @ReturnToMenu.canceled -= instance.OnReturnToMenu;
             }
 
             public void RemoveCallbacks(IHotkeysActions instance)
@@ -396,6 +425,7 @@ namespace NicePlayTestTask.Services.Input
             void OnSaveProgress(InputAction.CallbackContext context);
             void OnLoadProgress(InputAction.CallbackContext context);
             void OnShowCombinations(InputAction.CallbackContext context);
+            void OnReturnToMenu(InputAction.CallbackContext context);
         }
     }
 }

@@ -147,16 +147,19 @@ MonoBehaviour:
   m_text: '<b>Hotkeys:</b>
 
 
-    [<b><color=orange>R</color><b>] - reload scene
+    [<b><color=grey>ESC</color></b>] - return to menu
 
-    [<b><color=blue>T</color></b>]
-    - show combinations list
+    [<b><color=orange>R</color></b>]
+    - reload scene
+
+    [<b><color=blue>T</color></b>] - show combinations list
 
 
-    [<b><color=green>S</color></b>] - save level progress
+    [<b><color=green>S</color></b>]
+    - save level progress
 
-    [<b><color=green>L</color></b>]
-    - load level progress (if exists)'
+    [<b><color=green>L</color></b>] - load level progress
+    (if exists)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
